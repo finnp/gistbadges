@@ -8,10 +8,11 @@ var app = express()
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'jade')
 
-app.get('/badge/:user/:gistid', function (req, res) {
+app.get('/badge/:user/:gistid/:issueid', function (req, res) {
   res.render('badge', {
     user: req.param('user'),
-    gistid: req.param('gistid')
+    gistid: req.param('gistid'),
+    issueid: req.param('issueid') || '1'
   })
 })
 

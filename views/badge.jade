@@ -6,3 +6,7 @@ html(lang="en")
   body
     h1 Your badge!
     img(alt="Your Badge" src="https://gist.githubusercontent.com/#{user}/#{gistid}/raw/badge.png")
+    p Assertion Url
+      input(id="assertion-url" value="https://gist.githubusercontent.com/#{user}/#{gistid}/raw/#{issueid}.json")
+    script(type='text/javascript').
+      OpenBadges.issue([document.querySelector('#assertion-url').value]);
