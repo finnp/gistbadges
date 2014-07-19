@@ -1,0 +1,23 @@
+{
+  "name": "gistbadges",
+  "version": "0.0.0",
+  "description": "A simple app for P2P issuing Open Badges through GitHub Gist",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/finnp/gistbadges.git"
+  },
+  "keywords": [
+    "openbadges",
+    "gist"
+  ],
+  "author": "Finn Pauls",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/finnp/gistbadges/issues"
+  },
+  "homepage": "https://github.com/finnp/gistbadges"
+}
