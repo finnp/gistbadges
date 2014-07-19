@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/finnp/gistbadges/issues"
   },
-  "homepage": "https://github.com/finnp/gistbadges"
+  "homepage": "https://github.com/finnp/gistbadges",
+  "dependencies": {
+    "express": "^4.6.1",
+    "jade": "^1.4.2"
+  }
 }
