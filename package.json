@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
+  "engines": {
+    "node": "0.10.x"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/finnp/gistbadges.git"
@@ -23,6 +26,7 @@
   "homepage": "https://github.com/finnp/gistbadges",
   "dependencies": {
     "express": "^4.6.1",
+    "github-oauth": "^0.1.0",
     "jade": "^1.4.2"
   }
 }
