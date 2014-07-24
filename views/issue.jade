@@ -5,3 +5,7 @@ html(lang="en")
     link(rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
   body
     h1 Issue a badge
+    if loggedin
+      p Hello, #{githubName}
+    else
+      a(href='/login') Log in with GitHub
