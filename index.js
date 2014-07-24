@@ -73,7 +73,6 @@ app.get('/', function (req, res) {
 })
 
 app.post('/add', function (req, res) {
-  console.log(req.body)
   var badge = {
     name: req.body.badgename,
     description: req.body.badgedesc,
@@ -83,12 +82,15 @@ app.post('/add', function (req, res) {
       name: req.user.username
     }
   }
-  res.write('Creating badge...')
   createBadge(req.user.token, badge, function (err, gist) {
     if(err) {
       res.end('Error creating. ' + err)
     } else {
-      res.end('Done: ' + gist.html_url)
+      res.render('created', {
+        gistid: gist.id,
+        gisturl: gist.html_url,
+        shareurl: urlResolve(baseURL, '/badge/' + req.user.username + '/' + gist.id)
+      })
     }
     
   })
