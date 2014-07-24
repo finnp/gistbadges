@@ -3,12 +3,18 @@ var path = require('path')
 var express = require('express')
 var passport = require('passport')
 var GitHubStrategy = require('passport-github').Strategy
-var Github = require('github')
+var handlebars = require('express3-handlebars')
+var bodyParser = require('body-parser')
+var createBadge = require('./createbadge')
 
 var baseURL = process.env.URL || 'http://localhost:8000'
 
 var app = express()
-app.set('view engine', 'jade')
+app.engine('handlebars', handlebars({defaultLayout: 'main'}))
+app.set('view engine', 'handlebars')
+
+app.use(bodyParser.urlencoded({extended: true}))
+
 app.use(require('express-session')({
   secret: 'temp',
   resave: true,
@@ -16,24 +22,6 @@ app.use(require('express-session')({
   }))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(function (req, res, next) {
-  req.mytest = "wow"
-  
-  console.log('req', req.user)
-  if(req.user && req.user.token) {
-    req.github = new Github(({
-      debug: true,
-      version: '3.0.0'
-    }))
-    
-    req.github.authenticate({
-      type: 'oauth',
-      token: req.user.token
-    })
-  }
-  
-  next()
-})
 
 passport.use(new GitHubStrategy({
   clientID: process.env['GITHUB_CLIENT'],
@@ -58,7 +46,7 @@ passport.deserializeUser(function (obj, done) {
 app.get('/login', passport.authenticate('github'))
 
 app.get('/error', function (res, res) {
-  res.end('sorry, erro')
+  res.end('GitHub login failed, try again.')
 })
 
 app.get('/callback', passport.authenticate('github', {
@@ -73,28 +61,37 @@ app.get('/', function (req, res) {
   var options = {}
   
   if(req.isAuthenticated()) {
+    
     options.loggedin = true
     options.githubName = req.user.username
     
-    var newGist = {
-      'description': 'badge issued with GistBadges',
-      'public': true,
-      'files': {
-        'test.txt': {
-          'content': 'this is my first automatically created gist'
-        }
-      }
-    }
-    
-    req.github.gists.create(newGist, function (err, res) {
-      console.log(res)
-    })
-
   } else {
     options.loggedin = false
   }
   
   res.render('issue', options)
+})
+
+app.post('/add', function (req, res) {
+  console.log(req.body)
+  var badge = {
+    name: req.body.badgename,
+    description: req.body.badgedesc,
+    receiver: req.body.badgereceiver,
+    criteria: req.body.badgereq,
+    issuer: {
+      name: req.user.username
+    }
+  }
+  res.write('Creating badge...')
+  createBadge(req.user.token, badge, function (err, gist) {
+    if(err) {
+      res.end('Error creating. ' + err)
+    } else {
+      res.end('Done: ' + gist.html_url)
+    }
+    
+  })
 })
 
 // endpoint for receiving the badge

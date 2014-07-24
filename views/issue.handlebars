@@ -1,0 +1,51 @@
+{{#if loggedin}}
+  Hello, {{githubName}}!
+
+  <form action="/add" method="post" class="form-horizontal">
+  <fieldset>
+
+  <!-- Form Name -->
+  <legend>Create Badge</legend>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="badgename">Badge Name</label>  
+    <div class="col-md-6">
+    <input id="badgename" name="badgename" type="text" placeholder="Best badger ever" class="form-control input-md">
+      
+    </div>
+  </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="badgedesc">Badge Description</label>  
+    <div class="col-md-6">
+    <input id="badgedesc" name="badgedesc" type="text" placeholder="For the best badger ever" class="form-control input-md">
+      
+    </div>
+  </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="badgereceiver">Receiver</label>  
+    <div class="col-md-6">
+    <input id="badgereceiver" name="badgereceiver" type="text" placeholder="best@badger.it" class="form-control input-md">
+      
+    </div>
+  </div>
+
+  <!-- Textarea -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="badgereq">Badge Requirements</label>
+    <div class="col-md-4">                     
+      <textarea class="form-control" id="badgereq" name="badgereq"></textarea>
+    </div>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Create</button>
+
+  </fieldset>
+  </form>
+{{else}}
+  <a href="/login" class="btn btn-primary btn-large">Log in with GitHub</a>
+{{/if}}
