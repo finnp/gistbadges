@@ -6,6 +6,7 @@ var GitHubStrategy = require('passport-github').Strategy
 var handlebars = require('express3-handlebars')
 var bodyParser = require('body-parser')
 var createBadge = require('./createbadge')
+var request = require('request')
 
 var baseURL = process.env.URL || 'http://localhost:8000'
 
@@ -98,10 +99,16 @@ app.post('/add', function (req, res) {
 
 // endpoint for receiving the badge
 app.get('/badge/:user/:gistid/:issueid?', function (req, res) {
-  res.render('badge', {
-    user: req.param('user'),
-    gistid: req.param('gistid'),
-    issueid: req.param('issueid') || '1'
+  var gistURL = 'https://gist.github.com/'
+  var url = gistURL + req.param('user') + '/' + req.param('gistid') + '/raw/class.json'
+  request({url: url, json:true}, function (err, m, badgeClass) {
+    var badgeImage = badgeClass.image
+    res.render('badge', {
+      user: req.param('user'),
+      gistid: req.param('gistid'),
+      issueid: req.param('issueid') || '1',
+      badgeImage: badgeImage
+    })
   })
 })
 
