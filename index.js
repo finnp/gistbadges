@@ -97,18 +97,23 @@ app.post('/add', function (req, res) {
   })
 })
 
+
+app.get('/img/:user/:gistid/badge.png', function (req, res) {
+  var gistURL = 'https://gist.github.com/'
+  var url = urlResolve(gistURL, req.param('user') + '/' + req.param('gistid') + '/raw/class.json')
+  request({url: url, json:true}, function (err, m, badgeClass) {
+    var imagedata =  badgeClass.image.split(',')[1]
+    res.set('Content-Type', 'image/png')
+    res.end(new Buffer(imagedata, 'base64'))
+  })
+})
+
 // endpoint for receiving the badge
 app.get('/badge/:user/:gistid/:issueid?', function (req, res) {
-  var gistURL = 'https://gist.github.com/'
-  var url = gistURL + req.param('user') + '/' + req.param('gistid') + '/raw/class.json'
-  request({url: url, json:true}, function (err, m, badgeClass) {
-    var badgeImage = badgeClass.image
-    res.render('badge', {
-      user: req.param('user'),
-      gistid: req.param('gistid'),
-      issueid: req.param('issueid') || '1',
-      badgeImage: badgeImage
-    })
+  res.render('badge', {
+    user: req.param('user'),
+    gistid: req.param('gistid'),
+    issueid: req.param('issueid') || '1',
   })
 })
 
