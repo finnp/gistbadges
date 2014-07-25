@@ -42,6 +42,11 @@
     </div>
   </div>
   
+  <div file-dropzone="[image/png]" file="badgeImage" class="droparea">
+    <img ng-src="\{{badgeImage || 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'}}"/>
+    <input type="hidden" name="badgeimage" value="\{{badgeImage}}" />
+  </div>
+  
   <button type="submit" class="btn btn-primary">Create</button>
 
   </fieldset>

@@ -1,0 +1,14 @@
+.droparea {
+  border: 10px dashed #ccc;
+  width: 100%;
+  min-height: 200px;
+  margin: 20px auto;
+}
+
+.droparea.hover {
+  border: 10px dashed #333;
+}
+
+img {
+  max-height: 300px;
+}

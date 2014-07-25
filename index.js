@@ -24,6 +24,8 @@ app.use(require('express-session')({
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use(express.static('static'))
+
 passport.use(new GitHubStrategy({
   clientID: process.env['GITHUB_CLIENT'],
   clientSecret: process.env['GITHUB_SECRET'],
@@ -79,6 +81,7 @@ app.post('/add', function (req, res) {
     description: req.body.badgedesc,
     receiver: req.body.badgereceiver,
     criteria: req.body.badgereq,
+    image: req.body.badgeimage,
     issuer: {
       name: req.user.username
     }

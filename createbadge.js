@@ -21,9 +21,7 @@ module.exports = function (token, badge, done) {
   newGist.files['criteria.txt'] = {
     'content': badge.criteria
   }
-  
-  var badgeImage = 'data:image/png;base64,' + require('fs').readFileSync('./badge.png', 'base64')
-  
+
   // create the gist first, so we can get the ID
   github.gists.create(newGist, function (err, gist) {
     if(err) {
@@ -44,7 +42,7 @@ module.exports = function (token, badge, done) {
     var classjson = {
       name: badge.name,
       description: badge.description,
-      image: badgeImage,
+      image: badge.image,
       criteria: resolve(url, 'criteria.txt'),
       issuer: resolve(url, 'issuer.json')
     }
@@ -88,7 +86,6 @@ module.exports = function (token, badge, done) {
         done(err)
         return
       }
-      console.log('edited', gist)
       done(null, gist)
     })
   })
