@@ -1,20 +1,55 @@
-# GistBadges
+# GistBadges 
+![Dependencies](http://img.shields.io/david/finnp/gistbadges.svg)
+![MIT License](http://img.shields.io/badge/license-MIT-brightgreen.svg)
 
-The goal of this project is to allow GitHub users to easily issue badges hosted
-by GitHub Gist. 
+![Creating a badge](screenshot.png)
 
-And example for a badge hosted in GitHub Gist can be found here: 
-https://gist.github.com/finnp/887146a17629d8d15270
+## Issue workflow
 
-I think the reason why GitHub Gist is very good for this is that it is a good 
-compromise between easy to issue with also having a meaningful assertion as well
-as a somewhat guarantee that it will work for sometime. The assertion would basically
-only break when the user changes it name on GitHub or GitHub changes their interface.
+Let's people issue badges to other people like this:
 
-It should work something like this:
-* Logging in with GitHub
-* Uploading image and add Badge data and receiver
-* Then the app automatically creates a gist with the appropriate data
-* The Issuer gets a link to give it to the receiver
-* The link allows the User to add the link to the Back Pack
-* Win
+1. Log in with GitHub
+2. Input badge data and upload an image
+3. Click create and a GitHub Gist is created
+4. Receive a link for sharing the Badge
+5. The link allows the receiver to save the badge directly to the backback
+6. (ノ・∀・)ノ Successfully issued a badge! 
+
+## Install
+
+First install the dependencies, this will also install bower
+and run `bower install`.
+
+```
+git clone https://github.com/finnp/gistbadges.git
+cd gistbadges
+npm install
+```
+
+Now set the env variables GITHUB_CLIENT and GITHUB_SECRET to 
+working values and rum `npm start`. By default it will run
+on `localhost:8000`.
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2014 Finn Pauls
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
