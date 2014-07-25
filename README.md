@@ -2,6 +2,11 @@
 ![Dependencies](http://img.shields.io/david/finnp/gistbadges.svg)
 ![MIT License](http://img.shields.io/badge/license-MIT-brightgreen.svg)
 
+Log in with GitHub to issue a [Open Badge](http://www.openbadges.org/) to someone else. 
+The badge assertion will be hosted on GitHub Gist and you will get a link to 
+send to the person receiving the badge. All you need is a PNG image for the
+badge and you are ready to get started.
+
 ![Creating a badge](screenshot.png)
 
 ## Issue workflow
