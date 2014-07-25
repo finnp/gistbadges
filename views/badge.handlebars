@@ -1,14 +1,16 @@
-<h1>Your received a badge from {{user}}</h1>
-<img alt="Your Badge" src="/img/{{user}}/{{gistid}}/badge.png" class="img-responsive" /> 
-<button id="backpack-add" class="btn btn-lg btn-primary">
-  Add to your backpack
-</button>
-<p class="hidden"> Assertion URL
-  <input id="assertion-url" value="https://gist.githubusercontent.com/{{user}}/{{gistid}}/raw/{{issueid}}.json">
+<div class="jumbotron">
+  <h1>Your received a badge from {{user}}</h1>
+  <img alt="Your Badge" src="/img/{{user}}/{{gistid}}/badge.png" class="img-responsive" /> 
+  <button id="backpack-add" class="btn btn-lg btn-primary">
+    Add to your backpack
+  </button>
+  <p class="hidden"> Assertion URL
+    <input id="assertion-url" value="https://gist.githubusercontent.com/{{user}}/{{gistid}}/raw/{{issueid}}.json">
 
-<script src="https://backpack.openbadges.org/issuer.js"></script>
-<script>  
-  document.querySelector('#backpack-add').onclick = function() {
-      OpenBadges.issue([document.querySelector('#assertion-url').value]);
-    }
-</script>
+  <script src="https://backpack.openbadges.org/issuer.js"></script>
+  <script>  
+    document.querySelector('#backpack-add').onclick = function() {
+        OpenBadges.issue([document.querySelector('#assertion-url').value]);
+      }
+  </script>
+</div>

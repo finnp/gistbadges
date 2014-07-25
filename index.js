@@ -93,13 +93,17 @@ app.post('/add', function (req, res) {
       res.render('created', {
         gistid: gist.id,
         gisturl: gist.html_url,
-        shareurl: urlResolve(baseURL, '/badge/' + req.user.username + '/' + gist.id)
+        shareurl: urlResolve(baseURL, '/badge/' + req.user.username + '/' + gist.id),
+        imageurl: urlResolve(baseURL, '/img/' + req.user.username + '/' + gist.id + '/badge.png'),
       })
     }
     
   })
 })
 
+app.get('/add', function (req, res) {
+  res.redirect('/')
+})
 
 app.get('/img/:user/:gistid/badge.png', function (req, res) {
   var gistURL = 'https://gist.github.com/'
