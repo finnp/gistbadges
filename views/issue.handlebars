@@ -1,6 +1,4 @@
 {{#if loggedin}}
-  Hello, {{githubName}}!
-
   <form action="/add" method="post" class="form-horizontal">
   <fieldset>
 
@@ -11,7 +9,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label" for="badgename">Badge Name</label>  
     <div class="col-md-6">
-    <input id="badgename" name="badgename" type="text" placeholder="Best badger ever" class="form-control input-md">
+    <input id="badgename" name="badgename" type="text" placeholder="Best badger ever" class="form-control input-md" required>
       
     </div>
   </div>
@@ -20,7 +18,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label" for="badgedesc">Badge Description</label>  
     <div class="col-md-6">
-    <input id="badgedesc" name="badgedesc" type="text" placeholder="For the best badger ever" class="form-control input-md">
+    <input id="badgedesc" name="badgedesc" type="text" placeholder="For the best badger ever" class="form-control input-md" required>
       
     </div>
   </div>
@@ -29,8 +27,15 @@
   <div class="form-group">
     <label class="col-md-4 control-label" for="badgereceiver">Receiver</label>  
     <div class="col-md-6">
-    <input id="badgereceiver" name="badgereceiver" type="text" placeholder="best@badger.it" class="form-control input-md">
+    <input id="badgereceiver" name="badgereceiver" type="email" placeholder="best@badger.it" class="form-control input-md" required>
       
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="badgeissuer">Issuer</label>
+    <div class="col-md-4">
+      <input disabled id="badgeissuer" name="badgeissuer" type="text" value="{{githubName}}" class="form-control input-md">
     </div>
   </div>
 
@@ -38,11 +43,12 @@
   <div class="form-group">
     <label class="col-md-4 control-label" for="badgereq">Badge Requirements</label>
     <div class="col-md-4">                     
-      <textarea class="form-control" id="badgereq" name="badgereq"></textarea>
+      <textarea class="form-control" id="badgereq" name="badgereq" required></textarea>
     </div>
   </div>
   
   <div file-dropzone="[image/png]" file="badgeImage" class="droparea">
+    <h1 ng-hide="badgeImage">Drop your badge image here.</h1>
     <img ng-src="\{{badgeImage || 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'}}"/>
     <input type="hidden" name="badgeimage" value="\{{badgeImage}}" />
   </div>
