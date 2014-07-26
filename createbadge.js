@@ -1,5 +1,6 @@
 var Github = require('github')
 var resolve = require('url').resolve
+var crypto = require('crypto')
 
 module.exports = function (token, badge, done) {
   var github = new Github({
@@ -47,14 +48,21 @@ module.exports = function (token, badge, done) {
       issuer: resolve(url, 'issuer.json')
     }
     
+    var recipient = {
+      type: "email",
+      hashed: badge.hashed
+    }
+    if(badge.hashed) {
+      recipient.salt = crypto.randomBytes(32).toString('base64')
+      recipient.identity = hash(badge.receiver, recipient.salt)
+    } else {
+      recipient.identity = badge.receiver
+    }
+    
     // 1.json
     var receiverjson = {
       uid: gist.id + '#1',
-      recipient: {
-        type: "email",
-        hashed: false,
-        identity: badge.receiver
-      },
+      recipient: recipient,
       issuedOn: (new Date()).toISOString(),
       badge: resolve(url, 'class.json'),
       verify: {
@@ -92,7 +100,8 @@ module.exports = function (token, badge, done) {
   
 }
 
-
-
-
-
+function hash(email, salt) {
+  var sum = crypto.createHash('sha256');
+  sum.update(email + salt);
+  return 'sha256$'+ sum.digest('hex');
+}

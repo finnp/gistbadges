@@ -82,6 +82,7 @@ app.post('/add', function (req, res) {
     receiver: req.body.badgereceiver,
     criteria: req.body.badgereq,
     image: req.body.badgeimage,
+    hashed: req.body.mailhash === 'checked',
     issuer: {
       name: req.user.username
     }
