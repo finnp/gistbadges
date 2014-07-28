@@ -1,6 +1,7 @@
 var Github = require('github')
 var resolve = require('url').resolve
 var crypto = require('crypto')
+var hash = require('dollar-hash')
 
 module.exports = function (token, badge, done) {
   var github = new Github({
@@ -54,7 +55,7 @@ module.exports = function (token, badge, done) {
     }
     if(badge.hashed) {
       recipient.salt = crypto.randomBytes(32).toString('base64')
-      recipient.identity = hash(badge.receiver, recipient.salt)
+      recipient.identity = hash(badge.receiver, recipient.salt, 'sha256')
     } else {
       recipient.identity = badge.receiver
     }
@@ -98,10 +99,4 @@ module.exports = function (token, badge, done) {
     })
   })
   
-}
-
-function hash(email, salt) {
-  var sum = crypto.createHash('sha256');
-  sum.update(email + salt);
-  return 'sha256$'+ sum.digest('hex');
 }
