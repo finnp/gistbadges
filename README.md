@@ -31,7 +31,7 @@ cd gistbadges
 npm install
 ```
 
-Now set the env variables GITHUB_CLIENT and GITHUB_SECRET to 
+Now set the env variables `GITHUB_CLIENT` and `GITHUB_SECRET` to 
 working values and rum `npm start`. By default it will run
 on `localhost:8000`.
 
