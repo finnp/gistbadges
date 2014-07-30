@@ -1,21 +1,14 @@
 window.onload = function () {
   var dropTarget = document.querySelector("#droparea")
-
-  require("drag-and-drop-files")(dropTarget, function(files) {
-    var reader = new FileReader()
-    var file = files[0]
-    
-    if(file.type !== 'image/png') {
-      alert('Image has to be a PNG image')
-      return
+  if(!dropTarget) return
+  require('drop-file-dataurl')(dropTarget,
+    function (dataURL) {
+      this.querySelector('input').value = dataURL
+      this.querySelector('img').src = dataURL
+    },
+    function (file) {
+      if(file.type === 'image/png') return true
+      alert('Badge has to be a PNG image')
     }
-    
-    reader.readAsDataURL(file)
-
-    reader.onload = function () {
-      var dataURL = reader.result
-      document.querySelector('#badgeimage').value = dataURL
-      document.querySelector("#droparea img").src = dataURL
-    }
-  })  
+  )
 }
