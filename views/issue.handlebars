@@ -58,10 +58,10 @@
     </div>
   </div>
   
-  <div file-dropzone="[image/png]" file="badgeImage" class="droparea">
-    <h1 ng-hide="badgeImage">Drop your badge image here.</h1>
-    <img ng-src="\{{badgeImage || 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'}}"/>
-    <input type="hidden" name="badgeimage" value="\{{badgeImage}}" />
+  <div id="droparea">
+    <h1 id="drop-info">Drop your badge image here.</h1>
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
+    <input type="hidden" id="badgeimage" name="badgeimage" value="" />
   </div>
   
   <button type="submit" class="btn btn-primary">Create</button>

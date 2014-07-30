@@ -1,11 +1,11 @@
-.droparea {
+#droparea {
   border: 10px dashed #ccc;
   width: 100%;
   min-height: 200px;
   margin: 20px auto;
 }
 
-.droparea.hover {
+#droparea.hover {
   border: 10px dashed #333;
 }
 
